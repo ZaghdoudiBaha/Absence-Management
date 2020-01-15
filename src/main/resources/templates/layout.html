@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+
+<title>Nouveau etudiant</title>
+
+</head>
+<body>
+
+	 <nav class="navbar navbar-default" style="height:50px">
+		<div class="container-fluid">
+		<img class="navbar-brand"  src="/images/tekup.png" style="width:80px;height:70px; margin-top: -10px" >
+			<div class="navbar-header">
+				
+				<a class="navbar-brand" th:href="@{/absform}">Absence Management</a>
+				
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Home</a></li>
+				<li><a th:href="@{/etudiant}">Etudiant</a></li>
+				<li><a th:href="@{/classe}">Classe</a></li>
+				<li><a th:href="@{/matiere}">Matiers</a></li>
+				
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+						Sign Up</a></li>
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+						Login</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<section layout:fragment="container2">
+	
+	</section> 
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Liste des classes</title>
+</head>
+<body>
+	<div layout:fragment="container2">
+
+		<div class="container spacer col-md-8 col-xs-12">
+
+			<div class="container">
+				<form th:action="@{/classe}" method="post">
+					<label>Recherche</label> <input type="text" name="motCle"
+						th:value="${motCle}" placeholder="Entrer label du classe" />
+					<button class="btn btn-primary">Chercher</button>
+				</form>
+			</div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">Liste des classes</div>
+				<div class="panel-body">
+					<div align="right">
+						<a th:href="@{/ajouterClasse}" class="btn btn-primary">Ajouter classe</a>
+					</div>
+					<table class="table table-hover">
+
+						<thead>
+							<tr>
+								<th>Label</th>
+								<th>Nom complet</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr th:each="classe : ${classes}">
+								<td th:text="${classe.label}"></td>
+								<td th:text="${classe.nom_complet}"></td>
+
+
+								<td><a
+									onclick="return confirm ('Etes vous sure pour la supression ?')"
+									th:href="@{/supprimerClasse(id=${classe.id},page=${pageCourante},size=${size},motCle=${motCle})}"
+									class="btn btn-danger">Supprimer</a></td>
+
+								<td><a 
+									th:href="@{/modifierClasse(id=${classe.id})}" 
+									class="btn btn-primary">Modifier</a></td> 
+							</tr>
+						<tbody>
+					</table>
+				</div>
+
+				<div class="container">
+					<ul class="nav nav-pills">
+						<li class="nav-item"
+							th:class="${pageCourante}==${status.index}?'active':''"
+							th:each="pa,status:${pages}"><a class="nav-link"
+							th:href="@{/classe(page=${status.index},size=${size},motCle=${motCle})}"
+							th:text="${status.index}"></a></li>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+
+</body>
+</html>

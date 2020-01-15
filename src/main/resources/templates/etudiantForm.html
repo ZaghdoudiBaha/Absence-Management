@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+
+<title>Nouveau etudiant</title>
+<head>
+<meta charset="UTF-8">
+
+<title>Nouveau etudiant</title>
+</head>
+<body>
+
+	<div layout:fragment="container2">
+		<div class="container spacer col-md-6 col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Ajouter un etudiant</b></div>
+				<div class="panel-body">
+					<form th:action="@{/ajouterEtudiant}" method="post">
+
+						<div class="form-group">
+							<label class="control-label">Nom:</label> <input type="text"
+								class="form-control" name="nom" th:value="${etudiant.nom}" />
+								<span class="text-danger" th:errors="${etudiant.nom}"></span>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Prenom:</label> <input type="text"
+								class="form-control" name="prenom" th:value="${etudiant.prenom}" />
+							<span class="text-danger" th:errors="${etudiant.prenom}"></span>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">E-mail:</label> <input type="email"
+								class="form-control" name="email" th:value="${etudiant.email}" />
+							<span class="text-danger" th:errors="${etudiant.email}"></span>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Date de naissance:</label> <input
+								type="date" class="form-control" name="date_naiss"
+								th:value=${etudiant.date_naiss} /> <span class="text-danger"
+								th:errors="${etudiant.date_naiss}"></span>
+						</div>
+
+						<div class="form-group">
+							<label for="sel1">Classe :</label> 
+							
+							<select name="classe" class="form-control" th:value=${etudiant.classe}>
+								<option th:value="0">-- Selectionner un classe --</option>
+								<option th:each="classe : ${classes}" th:value="${classe.id}" th:text="${classe.label}"></option>
+							</select>
+						</div>
+
+						<div>
+							<button type="submit" class="btn btn-primary">Enregistrer</button>
+							<a th:href="@{/etudiant}" class="btn btn-primary">Annuler</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

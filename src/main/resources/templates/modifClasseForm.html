@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+	
+	<head>
+	<meta charset="UTF-8">
+	<title>Modifier classe</title>
+	</head>
+	<body>
+		<div layout:fragment="container2">
+			<div class="container spacer col-md-6 col-xs-12">
+				<div class="panel panel-primary">
+					<div class="panel-heading"><b>Modifier classe</b></div>
+					<div class="panel-body">
+					
+						<form th:action="@{/ajouterClasse}" method="post" th:object="${classe}" >
+							<div class="form-group">
+								<label class="control-label">ID: </label> 
+								<input type="text" class="form-control" th:fields="*{id}" readonly="readonly" />
+							</div>
+	
+							<div class="form-group">
+								<label class="control-label">Label:</label> 
+								<input type="text" class="form-control" th:fields="*{label}" /> 
+								<span class="text-danger" th:errors="${classe.label}"></span>
+							</div>
+	
+							<div class="form-group">
+								<label class="control-label">Nom Complet:</label>
+								<input type="text" class="form-control" th:fields="*{nom_complet}" />
+								<span class="text-danger" th:errors="${classe.nom_complet}"></span>
+							</div>			
+							
+							  <label for="sel1" class="list-group-item list-group-item-action active">Choisir des matiéres:</label>
+	
+							  <select  class="form-control" th:value="${classe.matieres}" th:field="${classe.matieres}" multiple="multiple" >
+								    <option th:each="matiere : ${matiers}" th:value="${matiere.id}" th:text="${matiere.label}"></option>
+							  </select>
+							<div>
+								<button type="submit" class="btn btn-primary">Modifier</button>
+								<a th:href = "@{/classe}" class="btn btn-primary">Annuler</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>etudiant</title>
+</head>
+<body>
+
+
+	<div layout:fragment="container2">
+	
+		<div class="container spacer col-md-8 col-xs-12">
+		
+			<div class="container">      
+				<form th:action="@{/etudiant}" method="get"> 
+					<label>Recherche</label>   
+					<input   type="text" name="motCle" th:value="${motCle}" placeholder="Entrer le nom"/> 
+					<button class="btn btn-primary">Chercher</button>
+				</form>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">Liste des etudiants</div>			
+				<div class="panel-body">
+					<div align="right">
+						<a th:href="@{/ajouterEtudiant}" class="btn btn-primary">Ajouter etudiant</a>
+					</div>
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>Matricule</th>
+								<th>Nom</th>
+								<th>Prenom</th>
+								<th>E-mail</th>
+								<th>Date de naissance</th>
+								<th>Classe</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr th:each="etudiant : ${etudiants}">
+								<td th:text="${etudiant.matricule}"></td>
+								<td th:text="${etudiant.nom}"></td>
+								<td th:text="${etudiant.prenom}"></td>
+								<td th:text="${etudiant.email}"></td>
+								<td th:text="${etudiant.date_naiss}"></td>
+								<td th:text="${etudiant.classe.getLabel()}"></td>
+								
+								<td><a onclick="return confirm ('Etes vous sure pour la supression ?')" 
+								th:href="@{/supprimerEtudiant(matricule=${etudiant.matricule},page=${pageCourante},size=${size},motCle=${motCle})}" 
+								class="btn btn-danger">Supprimer</a></td>
+								
+								<td><a th:href="@{/modifierEtudiant(matricule=${etudiant.matricule})}" class="btn btn-primary">Modifier</a></td>
+							</tr>
+						<tbody>
+					</table>
+				</div>
+				
+				<div class="container" >
+					<ul class="nav nav-pills">     
+						<li class="nav-item" 
+							th:class="${pageCourante}==${status.index}?'active':''"   
+							th:each="pa,status:${pages}"><a class="nav-link"
+							th:href="@{/etudiant(page=${status.index},size=${size},motCle=${motCle})}"   
+							th:text="${status.index}"></a></li>    
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Statistique absence</title>
+</head>
+
+<body>
+	<div layout:fragment="container2">
+		<div class="container spacer col-md-6 col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Rapport d'absence</b></div>
+				
+					<form th:action="@{/nbrAbsEtudiantParMatiere}" method="post">
+
+						<div><br>
+						
+							<div>
+								<label class="control-label">Classe  id:</label>
+								<input class="form-control" type="text" name ="id" th:value="${id}" readonly="readonly">
+							</div>
+							<div>
+								<label class="control-label">Etudiant matricule :</label>
+								<input class="form-control" type="text" name ="matricule" th:value="${matricule}" readonly="readonly">
+							</div>
+							
+							<div>
+								<label class="control-label">choisir une matiére</label>
+								<select name="matiere" class="form-control" th:value="${matiere}" >
+							  		<option>-- Selctionner une matiére --</option>
+								    <option th:each="matiere : ${matieres}" th:value="${matiere.id}" th:text="${matiere.label}"></option>
+								</select>
+							</div>
+						</div><br>
+							<div>
+								<button type="submit" class="btn btn-primary">Afficher rapport</button>
+								<a th:href="@{/classe}" class="btn btn-primary">Annuler</a>
+							</div>
+					</form>
+				
+			</div>
+		</div>
+	</div>
+</body>
+</html>

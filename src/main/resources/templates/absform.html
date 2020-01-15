@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Gestion des absences</title>
+</head>
+<body>
+
+
+	<div layout:fragment="container2">
+	
+		<div class="container spacer col-md-4 col-xs-12">
+		
+			<form th:action="@{/listEtudiantParClasse}" method="get"> 
+				<label>Choisir la classe</label>   
+				<select name="classe" class="form-control" th:value=${classe}>
+					<option th:value="0">-- Selectionner une classe --</option>
+					<option th:each="classe : ${classes}" th:value="${classe.id}" th:text="${classe.label}"></option>
+				</select><br>
+				<button type="submit" class="btn btn-primary">Afficher la liste des etudiants</button>
+			</form>	
+				
+
+		</div>
+		<div class="container spacer col-md-8 col-xs-12">
+			<img class="navbar-brand"  src="/images/noteAbs.png" style="width:280px;height:270px" >
+		</div>
+	</div>
+	
+	
+
+
+			
+			
+		
+</body>
+</html>

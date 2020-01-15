@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Nouvelle matiere</title>
+</head>
+<body>
+	<div layout:fragment="container2">
+		<div class="container spacer col-md-6 col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><b>Ajouter une matiere</b></div>
+				<div class="panel-body">
+					<form th:action="@{/ajouterMatiere}" method="post">
+
+						<div class="form-group">
+							<label class="control-label">Label:</label> 
+							<input type="text"
+								class="form-control" name="label" /> <span
+								class="text-danger" th:errors="${matiere.label}"></span>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Nombre d'heure:</label> 
+							<input type="number" class="form-control" name="nb_heure" value="0"/>
+							<span class="text-danger" th:errors="${matiere.nb_heure}"></span>
+						</div>		
+						<div class="form-group">
+							<label class="control-label">Seuil:</label> 
+							<input type="number" class="form-control" name="seuil_abs" value="0"/>
+							<span class="text-danger" th:errors="${matiere.seuil_abs}"></span>
+						</div>					
+
+						<div>
+							<button type="submit" class="btn btn-primary">Enregistrer</button>
+							<a th:href="@{/matiere}" class="btn btn-primary">Annuler</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

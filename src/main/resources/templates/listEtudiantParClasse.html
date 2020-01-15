@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8">
+<title>Gestion des absences</title>
+</head>
+<body>
+
+
+	<div layout:fragment="container2">
+	
+		<div class="container spacer col-md-10 col-xs-12">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">Liste des etudiants</div>
+					<div class="panel-body">
+					
+					<table class="table table-hover" >
+						<thead>
+							<tr>
+								<th>Matricule</th>
+								<th>Nom</th>
+								<th>Prenom</th>
+								<th>E-mail</th>
+								<th>Date de naissance</th>
+								<th>Classe</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="etudiant : ${etudiants}">
+								<td th:text="${etudiant.matricule}"></td>
+								<td th:text="${etudiant.nom}"></td>
+								<td th:text="${etudiant.prenom}"></td>
+								<td th:text="${etudiant.email}"></td>
+								<td th:text="${etudiant.date_naiss}"></td>
+								<td th:text="${etudiant.classe.getLabel()}"></td>
+								
+								<td><a class="btn btn-danger" th:href="@{/AjouterAbsence(matricule=${etudiant.matricule},id=${etudiant.classe.getId()})}" >Ajouter Absence</a></td>
+								<td><a class="btn btn-info" th:href="@{/nbrAbsEtudiantParMatiere(matricule=${etudiant.matricule},id=${etudiant.classe.getId()})}" >Voir absence par matiére</a></td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				</div>
+
+
+		</div>
+	</div>
+	
+
+			
+			
+		
+</body>
+</html>
